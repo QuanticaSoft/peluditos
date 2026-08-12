@@ -10,17 +10,10 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: router,
       theme: AppTheme().getTheme(),
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Peluditos'),
-        ),
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
     );
   }
 }
