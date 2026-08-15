@@ -22,7 +22,7 @@ class MainAppState extends ConsumerState<MainApp> with WidgetsBindingObserver {
     super.initState();
     
     WidgetsBinding.instance.addObserver(this);
-
+    ref.read( permissionsProvider.notifier ).checkPermissions();
   }
 
   @override
@@ -43,6 +43,9 @@ class MainAppState extends ConsumerState<MainApp> with WidgetsBindingObserver {
       detached: la app esta terminando y no se puede acceder a ella, app fue destruiuda, tenemos muy poco teimpo de reaccion para guardar informacion, se recomienda usarlo para guardar informacion en local storage
       hidden: la app esta en background y no es visible para el usuario, pero sigue corriendo, se recomienda usarlo para guardar informacion en local storage
     */
+    if ( state == AppLifecycleState.resumed ) {
+      ref.read( permissionsProvider.notifier ).checkPermissions();
+    }
     super.didChangeAppLifecycleState(state);
   }
 
